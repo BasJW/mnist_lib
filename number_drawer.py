@@ -16,10 +16,11 @@ except FileNotFoundError:
 
 def classify(drawing_array):
     tensor = torch.tensor(drawing_array, dtype=torch.float32).unsqueeze(0).unsqueeze(0)
-    print(tensor.shape)
-    print(tensor)
+    # print(tensor.shape)
+    # print(tensor)
     #tensor = tensor / 255.0  # Normalize to [0, 1]
-    print(tensor)
+    # print(tensor)
+    tensor = tensor.to('cuda')
     with torch.no_grad():
         outputs = model(tensor)
         _, predicted = torch.max(outputs, 1)
